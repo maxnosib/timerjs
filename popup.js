@@ -52,7 +52,6 @@ function clearClock() {
 //функция для старта секундомера
 function StartTIME() {
     var cdateObj = new Date();
-    console.log(" -------------- ", dateObj.getTime())
     var t = (cdateObj.getTime() - dateObj.getTime()) - (s * 1000);
     if (t > 999) {
         s++;
