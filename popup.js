@@ -1,16 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     var start = document.getElementById('start');
     start.addEventListener('click', function() {
-        StartStop()
+        localStorage.setItem('start_time', new Date().getTime())
+        dateObj = new Date();
+        StartTIME();
     }, false);
     var clear = document.getElementById('clear');
     clear.addEventListener('click', function() {
-        StartStop()
+        clearClock();
     }, false);
 }, false);
 
+function checkLS() {
+    if (localStorage.getItem('start_time') != "") {
+        dateObj = new Date(Number(localStorage.getItem('start_time')));
+        StartTIME();
+    }
+}
+window.onload = checkLS;
+
 
 //объявляем переменные
+var dateObj = new Date();
 var base = 60;
 var clocktimer, dateObj, dh, dm, ds, ms;
 var readout = '';
@@ -22,18 +33,7 @@ var h = 1,
     ms = 0,
     init = 0;
 
-//Функция запуска и остановки
-function StartStop() {
-    if (init == 0) {
-        clearClock();
-        dateObj = new Date();
-        StartTIME();
-        init = 1;
-    } else {
-        clearTimeout(clocktimer);
-        init = 0;
-    }
-}
+
 
 //функция для очистки поля
 function clearClock() {
@@ -52,6 +52,7 @@ function clearClock() {
 //функция для старта секундомера
 function StartTIME() {
     var cdateObj = new Date();
+    console.log(" -------------- ", dateObj.getTime())
     var t = (cdateObj.getTime() - dateObj.getTime()) - (s * 1000);
     if (t > 999) {
         s++;
@@ -109,6 +110,6 @@ function StartTIME() {
         dh = '00';
     }
     readout = dh + ':' + dm + ':' + ds;
-    document.MyForm.stopwatch.value = readout;
+    document.MyForm.stopwatch.value = readout
     clocktimer = setTimeout("StartTIME()", 1);
 }
