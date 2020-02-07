@@ -4,14 +4,36 @@
 <head>
     <title>timer</title>
     <script src="popup.js"></script>
+    <style type="text/css">
+        button#clear {
+            background-image: url(icons/stop_red.svg);
+        }
+        
+        #clear,
+        #start {
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            border: none;
+            background-image: url(icons/start_red.svg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0, 0, 255, 0)
+        }
+        
+        #clear:focus,
+        #start:focus {
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
     <form name=MyForm>
         <input name=stopwatch size=10 value="00:00:00.00">
     </form>
-    <button id="start">start</button>
-    <button id="clear">clear</button>
+    <button id="start"></button>
+    <button id="clear"></button>
 </body>
 
 </html>
