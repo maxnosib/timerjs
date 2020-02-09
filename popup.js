@@ -109,6 +109,6 @@ function StartTIME() {
         dh = '00';
     }
     readout = dh + ':' + dm + ':' + ds;
-    document.MyForm.stopwatch.value = readout
+    document.getElementById('stopwatch').value = readout;
     clocktimer = setTimeout("StartTIME()", 1);
 }

@@ -5,22 +5,43 @@
     <title>timer</title>
     <script src="popup.js"></script>
     <style type="text/css">
-        button#clear {
-            background-image: url(icons/stop_red.svg);
+        #stopwatch {
+            border: none;
+            text-align: center;
+            font-size: 23px;
         }
         
+        .block_button {
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+        }
+        
+        #pause {
+            background-image: url('icons/Pause.svg');
+        }
+        
+        #clear {
+            background-image: url('icons/Refresh.svg');
+        }
+        
+        #start {
+            background-image: url('icons/start_red.svg');
+        }
+        
+        #pause,
         #clear,
         #start {
             width: 20px;
             height: 20px;
             padding: 10px;
             border: none;
-            background-image: url(icons/start_red.svg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(0, 0, 255, 0)
+            background-color: rgba(0, 0, 255, 0);
         }
         
+        #pause:focus,
         #clear:focus,
         #start:focus {
             outline: none;
@@ -29,11 +50,12 @@
 </head>
 
 <body>
-    <form name=MyForm>
-        <input name=stopwatch size=10 value="00:00:00.00">
-    </form>
-    <button id="start"></button>
-    <button id="clear"></button>
+    <input id=stopwatch size=10 value="00:00:00.00">
+    <div class="block_button">
+        <button id="pause"></button>
+        <button id="start"></button>
+        <button id="clear"></button>
+    </div>
 </body>
 
 </html>
