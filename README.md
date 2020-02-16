@@ -2,7 +2,7 @@
 chrome aplication
 
 таймер для подсчета времени выполнения задачи сделан как расширение для chrome
-
+![Image alt](https://github.com/maxnosib/timerjs/raw/master/img_readme/preview.png)
 ## установка расширения в ручную 
 * Склонировать проект в удобное для вас место.
 * Запустите браузер Google Chrome.
