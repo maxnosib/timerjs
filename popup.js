@@ -32,6 +32,7 @@ function checkLS() {
     isPause = localStorage.getItem('is_pause') == 'true';
     if (isPause) {
         document.getElementById('pause').disabled = true;
+        writeTimeByPause()
     } else {
         document.getElementById('start').disabled = true;
     }
@@ -41,6 +42,14 @@ window.onload = checkLS;
 // функция подсчета времени
 let timer = function(curentTime) {
     startTime = Number(localStorage.getItem('start_time'))
+    readout = translateTime(curentTime, startTime)
+    isPause = localStorage.getItem('is_pause') == 'true';
+    if (!isPause) {
+        document.getElementById('stopwatch').value = readout;
+    }
+}
+
+function translateTime(curentTime, startTime) {
     diffTime = (curentTime - startTime) / 1000
     hour = diffTime / 3600
     if (hour < 1) {
@@ -57,10 +66,7 @@ let timer = function(curentTime) {
     sec = diffTime - hour * 3600 - min * 60
     sec = Math.trunc(sec)
     readout = hour + ':' + min + ':' + sec;
-    isPause = localStorage.getItem('is_pause') == 'true';
-    if (!isPause) {
-        document.getElementById('stopwatch').value = readout;
-    }
+    return readout
 }
 
 function startTimer() {
@@ -95,4 +101,10 @@ function pauseClock() {
     }
     localStorage.setItem('diff_time', new Date().getTime() - startTime);
     localStorage.setItem('is_pause', true);
+}
+
+function writeTimeByPause() {
+    difTime = Number(localStorage.getItem('diff_time'));
+    readout = translateTime(new Date().getTime(), new Date().getTime() - difTime);
+    document.getElementById('stopwatch').value = readout;
 }
