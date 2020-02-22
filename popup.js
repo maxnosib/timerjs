@@ -76,6 +76,9 @@ function startTimer() {
 
 // функция для очистки поля
 function clearClock() {
+    if (Number(localStorage.getItem('start_time')) == 0) {
+        return
+    }
     clearInterval(timerId);
     localStorage.removeItem('start_time');
     localStorage.removeItem('is_pause');
