@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // функция для запуска таймера при повторном открытии приложения
 function checkLS() {
-    if (localStorage.getItem('start_time') != "") {
+    if (Number(localStorage.getItem('start_time')) > 0) {
         timerId = setInterval(() => timer(new Date().getTime()), 1000);
     }
     isPause = localStorage.getItem('is_pause') == 'true';
@@ -78,7 +78,8 @@ function startTimer() {
 function clearClock() {
     clearInterval(timerId);
     localStorage.removeItem('start_time');
-    localStorage.setItem('is_pause', true);
+    localStorage.removeItem('is_pause');
+    localStorage.removeItem('diff_time');
     readout = '0:0:0';
     document.getElementById('stopwatch').value = readout;
 }
@@ -86,6 +87,9 @@ function clearClock() {
 // функция для паузы
 function pauseClock() {
     startTime = Number(localStorage.getItem('start_time'))
+    if (startTime == 0) {
+        return
+    }
     localStorage.setItem('diff_time', new Date().getTime() - startTime);
     localStorage.setItem('is_pause', true);
 }
